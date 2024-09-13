@@ -161,7 +161,7 @@ def consume():
 
             # Define the base URL of the Polybot server
 
-            polybot_base_url = "https://loaybot6.int-devops.click"
+            polybot_base_url = "https://loayk-k8s-new1.int-devops.click"
 
             # Combine the base URL and the endpoint to form the complete URL
             url = polybot_base_url + f"/results?predictionId={prediction_id}"
