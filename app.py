@@ -150,9 +150,9 @@ def consume():
                         'predicted_img_path': {'S': predicted_img_path},
                         'labels': {'L': labels_list},
                         'time': {'N': str(time)}
-                    })
-                print("Successfully inserted the item into DynamoDB.")
+                })
 
+                logger.info(f'data insertred to Dynamodb successfully')
             except botocore.exceptions.ClientError as e:
                 # Handle errors or exceptions
                 print(f"Error: {e}")
@@ -161,11 +161,21 @@ def consume():
 
             # Define the base URL of the Polybot server
 
-            polybot_base_url = "https://loayk-k8s-new1.int-devops.click"
+            #polybot_base_url = "https://loayk-k8s-new1.int-devops.click"
+
+            # Combine the base URL and the endpoint to form the complete URL
+            #url = polybot_base_url + f"/results?predictionId={prediction_id}"
+            #url = f'https://polybottest-service:8443/results?predictionId={prediction_id}'
+            
+
+
+            polybot_base_url = "http://polybottest-service:8443"
 
             # Combine the base URL and the endpoint to form the complete URL
             url = polybot_base_url + f"/results?predictionId={prediction_id}"
 
+
+            logger.info(f' using URL : {url}')
             # Make the GET request to the endpoin
 
             headers = {'Content-Type': 'application/json'}  # Set the Content-Type header to JSON
