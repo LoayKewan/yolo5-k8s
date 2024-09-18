@@ -11,13 +11,13 @@ import requests
 
 images_bucket = os.environ['BUCKET_NAME']
 queue_name = os.environ['SQS_QUEUE_NAME']
+region_of_sqs = os.environ['region_of_sqs']
 
-sqs_client = boto3.client('sqs', region_name='eu-west-3')
+sqs_client = boto3.client('sqs', region_name=region_of_sqs)
 
 with open("data/coco128.yaml", "r") as stream:
     names = yaml.safe_load(stream)['names']
 current_time = time.time()
-
 
 def consume():
     while True:
@@ -161,21 +161,12 @@ def consume():
 
             # Define the base URL of the Polybot server
 
-            #polybot_base_url = "https://loayk-k8s-new1.int-devops.click"
-
-            # Combine the base URL and the endpoint to form the complete URL
-            #url = polybot_base_url + f"/results?predictionId={prediction_id}"
-            #url = f'https://polybottest-service:8443/results?predictionId={prediction_id}'
-            
-
-
             polybot_base_url = "http://polybottest-service:8443"
 
             # Combine the base URL and the endpoint to form the complete URL
             url = polybot_base_url + f"/results?predictionId={prediction_id}"
 
 
-            logger.info(f' using URL : {url}')
             # Make the GET request to the endpoin
 
             headers = {'Content-Type': 'application/json'}  # Set the Content-Type header to JSON
