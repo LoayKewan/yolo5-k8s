@@ -15,6 +15,7 @@ region_of_sqs = os.environ['region_of_sqs']
 
 sqs_client = boto3.client('sqs', region_name=region_of_sqs)
 
+
 with open("data/coco128.yaml", "r") as stream:
     names = yaml.safe_load(stream)['names']
 current_time = time.time()
