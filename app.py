@@ -17,7 +17,7 @@ sqs_client = boto3.client('sqs', region_name=region_of_sqs)
 
 
 ## new fix
-## new fix 1
+## new fix 111
 
 with open("data/coco128.yaml", "r") as stream:
     names = yaml.safe_load(stream)['names']
